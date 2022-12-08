@@ -8,8 +8,8 @@
    ## **Configure station in AP mode**
 
   First of all you need to configure your station in AP mode to send data to your local HA installation.
-* hold WiFi button at the back of station for 6 seconds until AP will flash on display.
-* select your station from available AP on you computer
+* hold WiFi button on the back of station for 6 seconds until AP will flash on display.
+* select your station from available AP on your computer
 * connect to stations setup page: `http://192.168.1.1` from your browser
 * in the third URL section fill in address to your local HA installation
 
