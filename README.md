@@ -13,7 +13,7 @@
 * connect to stations setup page: `http://192.168.1.1` from your browser
 * in the third URL section fill in address to your local HA installation
 
-![APScreen](/schizza/weatherstation-sws12500/README/weatherstationAP.png?raw=true)
+![APScreen](/README/weatherstationAP.png?raw=true)
   
    > **URL:**         `http://yourlocal.homeassistant.local:1880/endpoint/weatherstation`  
    > **Station ID:**  not needed. Might be filled in for security reasons  
@@ -31,7 +31,7 @@ To receive data from your station, there need to be flow with `http in` function
 * Link `http in` with convert funcion.
 * Link `convert` function with `MQTT out` node  
 
-![MQTTout](/schizza/weatherstation-sws12500/README/schizza/weatherstation-sws12500/README//NRflow.png?raw=true)
+![MQTTout](/README/NRflow.png?raw=true)
 
 **MQTT Out node**  
 > **Server:** your HA MQTT server  
