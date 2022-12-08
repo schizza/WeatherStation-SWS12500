@@ -39,6 +39,6 @@ To receive data from your station, there need to be flow with `http in` function
 
 ## **Configure Home Assistant**
 In HA we have to create sensors for recieving data from NR  
-* add `mqtt:` section to `configure.yaml` of your Home Assistant *(download `mqtt.yaml` from repository)*
+* add `mqtt:` section to `configuration.yaml` of your Home Assistant *(download `mqtt.yaml` from repository)*
 * restart HA and enjoy collecting data from your weather station :)
 
