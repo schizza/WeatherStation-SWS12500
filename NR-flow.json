@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1e9e530eed0a794f",
+        "type": "http in",
+        "z": "12132da9da4da3d3",
+        "name": "Receive data from station",
+        "url": "weatherstation",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "9e51f0eec500552e",
+                "99e6d123d952340d"
+            ]
+        ]
+    },
+    {
+        "id": "9e51f0eec500552e",
+        "type": "http response",
+        "z": "12132da9da4da3d3",
+        "name": "Reponse - data recieved",
+        "statusCode": "200",
+        "headers": {},
+        "x": 380,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "99e6d123d952340d",
+        "type": "function",
+        "z": "12132da9da4da3d3",
+        "name": "convert",
+        "func": "let weather = {\n    tempOut : (msg.payload.tempf - 32) / 1.8,\n    tempIn : (msg.payload.indoortempf - 32) / 1.8,\n    dewPoint : (msg.payload.dewptf - 32) / 1.8,\n    humidity : msg.payload.humidity,\n    humidityIndoor : msg.payload.indoorhumidity,\n    windSpeed : msg.payload.windspeedmph * 1.609344,\n    windGust: msg.payload.windgustmph * 1.609344,\n    windDir : msg.payload.winddir,\n    rain : msg.payload.rainin * 25.4,\n    dailyRain : msg.payload.dailyrainin * 25.4,\n    solarRadiation : msg.payload.solarradiation,\n    uv : msg.payload.UV,\n    baro : msg.payload.baromin * 33.86388640341\n}\n\nmsg.payload = weather;\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 120,
+        "wires": [
+            [
+                "1aae11af1b4a0f84"
+            ]
+        ]
+    },
+    {
+        "id": "1aae11af1b4a0f84",
+        "type": "mqtt out",
+        "z": "12132da9da4da3d3",
+        "name": "send data to MQTT server",
+        "topic": "weather",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 680,
+        "y": 120,
+        "wires": []
+    }
+]

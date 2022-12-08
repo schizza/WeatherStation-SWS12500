@@ -29,7 +29,7 @@ To receive data from your station, there need to be flow with `http in` function
     
 * Link this function with `http response` with `Status code: 200`  
 * Link `http in` with convert funcion.
-* Link `convert` function with `MQTT out` node  
+* Link `convert` function with `MQTT out` node  *(download `NR-flow.json` and import flow to NR)*
 
 ![MQTTout](/README/NRflow.png?raw=true)
 
