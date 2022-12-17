@@ -21,6 +21,7 @@
 
 *you can change `/weatherstation` to whatever you want, but you have to change NR configuration appropriately.*  
 
+---
 ## **Node-Red flow**  
 To receive data from your station, there need to be flow with `http in` function.  
 
@@ -37,8 +38,31 @@ To receive data from your station, there need to be flow with `http in` function
 > **Server:** your HA MQTT server  
 > **Topic:** weather (or whatever you want to use for topic in MQTT messages)  
 
+
+---
 ## **Configure Home Assistant**
 In HA we have to create sensors for recieving data from NR  
 * add `mqtt:` section to `configuration.yaml` of your Home Assistant *(download `mqtt.yaml` from repository)*
-* restart HA and enjoy collecting data from your weather station :)
+* **restart HA and enjoy collecting data from your weather station :)**  
+  
+      
+---
+## **Send meteo data to windy.com**
+First of all you need to create station on windy.com: [Windy stations](https://stations.windy.com)
 
+After registering your station to windy.com you will get API key which will be used in NR flow. 
+* download `Windy-function.json` and add this function with `http request` to NR
+* make sure to update `lon`, `lat`, `elevation`, `tempheight`, `windheight` in `windy function` to match your data
+> **lat:** your latitude  
+> **lon:** your longitude  
+> **elevation:** your elevation  
+> **tempheight:** sensor elevation above ground level  
+> **windheight:** sensor elevation above ground level   
+
+* connect `Windy function` to `Data reciever` 
+![WindyFlow](/README/windy.png) 
+
+* configure `http request` with your API key from Windy Stations
+![APIKEY](/README/windyAPIKey.png)
+
+**And you are done. Windy.com will now show you data.**

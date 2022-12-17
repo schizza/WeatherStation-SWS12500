@@ -1,0 +1,44 @@
+[
+    {
+        "id": "88637fc4533cfcb3",
+        "type": "function",
+        "z": "12132da9da4da3d3",
+        "name": "Windy",
+        "func": "/*let stations = \n         {\n         station: 0, \n         lat: 0,\n         lon: 0,\n         elevation: 0,\n         tempheight: 2,\n         windheight: 2,\n         shareOption: \"open\",\n        }\n    \n    \nlet observations = \n    {\n        station: 0,\n        tempf: msg.payload.tempf,\n        windspeedmph: msg.payload.windspeedmph,\n        dewpoint: (msg.payload.dewptf - 32) / 1.8,\n        humidity: msg.payload.humidity,\n        windgustmph: msg.payload.windgustmph,\n        winddir: msg.payload.winddir,\n        rainin: msg.payload.rainin,\n        uv: msg.payload.UV,\n        baromin: msg.payload.baromin\n    }\n\n*/\nlet windy = {\n    station: 0,\n    lat: 0,\n    lon: 0,\n    elevation: 0,\n    tempheight: 2,\n    windheight: 2,\n    shareOption: \"open\",\n    tempf: msg.payload.tempf,\n    windspeedmph: msg.payload.windspeedmph,\n    dewpoint: (msg.payload.dewptf - 32) / 1.8,\n    humidity: msg.payload.humidity,\n    windgustmph: msg.payload.windgustmph,\n    winddir: msg.payload.winddir,\n    rainin: msg.payload.rainin,\n    uv: msg.payload.UV,\n    baromin: msg.payload.baromin\n}\n\nmsg.payload =  windy; //JSON.stringify(windy);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "200f2add9accb673"
+            ]
+        ]
+    },
+    {
+        "id": "200f2add9accb673",
+        "type": "http request",
+        "z": "12132da9da4da3d3",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "query",
+        "url": "https://stations.windy.com/pws/update/API-KEY",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "credentials": {},
+        "x": 470,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    }
+]
