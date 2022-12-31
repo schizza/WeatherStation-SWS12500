@@ -18,6 +18,8 @@ Follow installation guide for your system or build version for your system - [ng
   
   sudo wget -P /etc/nginx/sites-available https://github.com/schizza/WeatherStation-SWS12500/blob/f7be558bbb5945ad6eba2f54a6fd18767f5cc342/weatherstation.nginx.conf 
 
+  sudo ln -s /etc/nginx/sites-available/weatherstation.nginx.conf /ect/nginx/sites-enabled/weatherstation
+
   sudo systemctl restart nginx
 ```
 <br>
@@ -61,7 +63,7 @@ Now you can start your Proxy Manager. First start will take a while - be patient
 
 ![APScreen](/README/weatherstationAP.png?raw=true)
   
-   > **URL:**         `IP address of your http proxy set in HA or server
+   > **URL:**         IP address of your http proxy set in HA or server
    > **Station ID:**  not needed. Might be filled in for security reasons  
    > **Station Key:** not needed. Might be filled in for security reasons
 
