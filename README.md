@@ -72,7 +72,7 @@ Now you can start your Proxy Manager. First start will take a while - be patient
 ---
 ## **Node-Red flow**  
 To receive data from your station you need to add Node-Red flow
-Download `NR-flow.json` and import it to Node-Red
+* Download `NR-flow.json` and import it to Node-Red
 
 The flow implements MQTT discovery so the sensor will show in Home assistant automatically under name: sencorsws12500
 
