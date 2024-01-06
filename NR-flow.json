@@ -1,68 +1,679 @@
 [
-    {
-        "id": "1e9e530eed0a794f",
-        "type": "http in",
-        "z": "12132da9da4da3d3",
-        "name": "Receive data from station",
-        "url": "weatherstation",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 150,
-        "y": 120,
-        "wires": [
-            [
-                "9e51f0eec500552e",
-                "99e6d123d952340d"
-            ]
-        ]
-    },
-    {
-        "id": "9e51f0eec500552e",
-        "type": "http response",
-        "z": "12132da9da4da3d3",
-        "name": "Reponse - data recieved",
-        "statusCode": "200",
-        "headers": {},
-        "x": 380,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "99e6d123d952340d",
-        "type": "function",
-        "z": "12132da9da4da3d3",
-        "name": "convert",
-        "func": "let weather = {\n    tempOut : (msg.payload.tempf - 32) / 1.8,\n    tempIn : (msg.payload.indoortempf - 32) / 1.8,\n    dewPoint : (msg.payload.dewptf - 32) / 1.8,\n    humidity : msg.payload.humidity,\n    humidityIndoor : msg.payload.indoorhumidity,\n    windSpeed : msg.payload.windspeedmph * 1.609344,\n    windGust: msg.payload.windgustmph * 1.609344,\n    windDir : msg.payload.winddir,\n    rain : msg.payload.rainin * 25.4,\n    dailyRain : msg.payload.dailyrainin * 25.4,\n    solarRadiation : msg.payload.solarradiation,\n    uv : msg.payload.UV,\n    baro : msg.payload.baromin * 33.86388640341\n}\n\nmsg.payload = weather;\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 120,
-        "wires": [
-            [
-                "1aae11af1b4a0f84"
-            ]
-        ]
-    },
-    {
-        "id": "1aae11af1b4a0f84",
-        "type": "mqtt out",
-        "z": "12132da9da4da3d3",
-        "name": "send data to MQTT server",
-        "topic": "weather",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "",
-        "x": 680,
-        "y": 120,
-        "wires": []
-    }
+  {
+    "id": "d7ea83cb63b97ef6",
+    "type": "tab",
+    "label": "Sencor SWS 12500",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "1e9e530eed0a794f",
+    "type": "http in",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Receive data from station",
+    "url": "weatherstation",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 130,
+    "y": 280,
+    "wires": [
+      [
+        "9e51f0eec500552e",
+        "72b7d049cfb24665",
+        "2a2b1853f83bf243",
+        "991f6e532e06fd69",
+        "44ab7d0791963c40",
+        "ebd4d41e073ddb38",
+        "830d7b59053ce64a",
+        "f17258e403ab28e7",
+        "b70bb0a342be36a9",
+        "c4de195d146d8899",
+        "eda535ca53cf8e26",
+        "f81c44436587aa06",
+        "a0ebb38a893807f7",
+        "03408c62429d1a11"
+      ]
+    ]
+  },
+  {
+    "id": "9e51f0eec500552e",
+    "type": "http response",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Reponse - data recieved",
+    "statusCode": "200",
+    "headers": {},
+    "x": 150,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "4cbe40dbf66c0ab7",
+    "type": "mqtt out",
+    "z": "d7ea83cb63b97ef6",
+    "name": "send MQTT value",
+    "topic": "",
+    "qos": "0",
+    "retain": "true",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "870fab63088deb10",
+    "x": 770,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "72b7d049cfb24665",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Outside Temperature",
+    "func": "var value = ((msg.payload.tempf - 32) / 1.8).toFixed(2)\nreturn { \n    payload: value,\n    topic: flow.get(\"outside_temp_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 60,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "2a2b1853f83bf243",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Inside Temperature",
+    "func": "var value = ((msg.payload.indoortempf - 32) / 1.8).toFixed(2)\nreturn {\n    payload: value,\n    topic: flow.get(\"inside_temp_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 120,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "991f6e532e06fd69",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Dew Point Outdoor",
+    "func": "var value = ((msg.payload.dewptf - 32) / 1.8).toFixed(2)\nreturn {\n    payload: value,\n    topic: flow.get(\"dew_point_outdoor_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 180,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "44ab7d0791963c40",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Humidity Outdoor",
+    "func": "return {\n    payload: msg.payload.humidity,\n    topic: flow.get(\"humidity_outdoor_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 240,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "69db5d39ef67ebc3",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Constants",
+    "func": "",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "var deviceName = \"sencorsws12500\"\nvar device = {\n    name: deviceName,\n    ids: \"73722946-9bd0-4fc0-a0c1-ecf6a8036248\",\n    mf: \"Sencor\",\n    mdl: \"SWS12500\",\n    sw: \"1.0\"\n}\nflow.set(\"deviceName\", deviceName)\nflow.set(\"device\", device)\nflow.set(\"id\", \"e4ab4c\")\nflow.set(\"outside_temp_topic\", `homeassistant/sensor/${deviceName}/outside_temp`)\nflow.set(\"inside_temp_topic\", `homeassistant/sensor/${deviceName}/inside_temp`)\nflow.set(\"dew_point_outdoor_topic\", `homeassistant/sensor/${deviceName}/dew_point_outdoor`)\nflow.set(\"humidity_outdoor_topic\", `homeassistant/sensor/${deviceName}/humidity_outdoor`)\nflow.set(\"humidity_indoor_topic\", `homeassistant/sensor/${deviceName}/humidity_indoor`)\nflow.set(\"wind_speed_topic\", `homeassistant/sensor/${deviceName}/wind_speed`)\nflow.set(\"wind_gust_topic\", `homeassistant/sensor/${deviceName}/wind_gust`)\nflow.set(\"wind_direction_topic\", `homeassistant/sensor/${deviceName}/wind_direction`)\nflow.set(\"rain_topic\", `homeassistant/sensor/${deviceName}/rain`)\nflow.set(\"rain_daily_topic\", `homeassistant/sensor/${deviceName}/rain_daily`)\nflow.set(\"baro_pressure_topic\", `homeassistant/sensor/${deviceName}/baro_pressure`)\nflow.set(\"uv_index_topic\", `homeassistant/sensor/${deviceName}/uv_index`)\nflow.set(\"solar_radiation_topic\", `homeassistant/sensor/${deviceName}/solar_radiation`)\n",
+    "finalize": "",
+    "libs": [],
+    "x": 110,
+    "y": 40,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b96157aa9e508b86",
+    "type": "inject",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Discovery event",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 120,
+    "y": 1160,
+    "wires": [
+      [
+        "ac7133caec7c3e14",
+        "adb4c71dea6fec22",
+        "24111a0df07db243",
+        "83bfaeb4a2287514",
+        "e07566bd16200c70",
+        "f02f6aaf3b80c847",
+        "4f544c25ccab1ab3",
+        "0eaaecad979d87dd",
+        "329ceea84337f263",
+        "c6eaa4e54c2227c9",
+        "d59faad89dc4171d",
+        "8184c9b6e1c44a5d",
+        "42dd3938073e9d40"
+      ]
+    ]
+  },
+  {
+    "id": "ac7133caec7c3e14",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Outside Temperature",
+    "func": "let name = \"outside_temp\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Outside Temperature\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"temperature\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"°C\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 840,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "adb4c71dea6fec22",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Inside Temperature",
+    "func": "let name = \"inside_temp\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Inside Temperature\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"temperature\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"°C\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 900,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "24111a0df07db243",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Dew Point Outdoor",
+    "func": "let name = \"dew_point_outdoor\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Dew Point Outdoor\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"temperature\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"°C\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 960,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "83bfaeb4a2287514",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Humidity Outdoor",
+    "func": "let name = \"humidity_outdoor\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Humidity Outdoor\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"humidity\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"%\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 1020,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "ebd4d41e073ddb38",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Humidity Indoor",
+    "func": "return {\n    payload: msg.payload.indoorhumidity,\n    topic: flow.get(\"humidity_indoor_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 300,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "e07566bd16200c70",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Humidity Indoor",
+    "func": "let name = \"humidity_indoor\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Humidity Indoor\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"humidity\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"%\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 1080,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "830d7b59053ce64a",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Speed",
+    "func": "return {\n    payload: msg.payload.windspeedmph * 1.609344,\n    topic: flow.get(\"wind_speed_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 360,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "f02f6aaf3b80c847",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Speed",
+    "func": "let name = \"wind_speed\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Wind Speed\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"wind_speed\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"km/h\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 1140,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "f17258e403ab28e7",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Gust",
+    "func": "return {\n    payload: msg.payload.windgustmph * 1.609344,\n    topic: flow.get(\"wind_gust_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 420,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "4f544c25ccab1ab3",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Gust",
+    "func": "let name = \"wind_gust\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Wind Gust\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"wind_speed\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"km/h\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 1200,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "b70bb0a342be36a9",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Direction",
+    "func": "return {\n    payload: msg.payload.winddir,\n    topic: flow.get(\"wind_direction_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 480,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "0eaaecad979d87dd",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Wind Direction",
+    "func": "let name = \"wind_direction\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Wind Direction\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"°\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 1260,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "c4de195d146d8899",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Rain",
+    "func": "return {\n    payload: msg.payload.rainin * 25.4,\n    topic: flow.get(\"rain_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 540,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "329ceea84337f263",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Rain",
+    "func": "let name = \"rain\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Rain\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"precipitation_intensity\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"mm/h\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 1320,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "eda535ca53cf8e26",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Rain Daily",
+    "func": "return {\n    payload: msg.payload.dailyrainin * 25.4,\n    topic: flow.get(\"rain_daily_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 600,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "c6eaa4e54c2227c9",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Rain Daily",
+    "func": "let name = \"rain_daily\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Rain Daily\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"precipitation_intensity\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"mm/h\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 1380,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "f81c44436587aa06",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Baro pressure",
+    "func": "return {\n    payload: (msg.payload.baromin * 33.86388640341).toFixed(2),\n    topic: flow.get(\"baro_pressure_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 660,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "d59faad89dc4171d",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Baro pressure",
+    "func": "let name = \"baro_pressure\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Baro pressure\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"pressure\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"hPa\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 1440,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "a0ebb38a893807f7",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "UV index",
+    "func": "return {\n    payload: msg.payload.UV,\n    topic: flow.get(\"uv_index_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 720,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "8184c9b6e1c44a5d",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "UV index",
+    "func": "let name = \"uv_index\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"UV index\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"irradiance\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 1500,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "03408c62429d1a11",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Solar radiation",
+    "func": "return {\n    payload: msg.payload.solarradiation,\n    topic: flow.get(\"solar_radiation_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 780,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "42dd3938073e9d40",
+    "type": "function",
+    "z": "d7ea83cb63b97ef6",
+    "name": "Solar radiation",
+    "func": "let name = \"solar_radiation\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"device\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Solar radiation\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"irradiance\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"watts/m2\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 1560,
+    "wires": [
+      [
+        "4cbe40dbf66c0ab7"
+      ]
+    ]
+  },
+  {
+    "id": "870fab63088deb10",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "192.168.31.3",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  }
 ]
