@@ -33,7 +33,8 @@
         "1360efb514e30830",
         "af233031391ef45c",
         "02515c4c20fffce1",
-        "15e0e82eb5b8a462"
+        "15e0e82eb5b8a462",
+        "b9b6f30b96b3eee8"
       ]
     ]
   },
@@ -62,8 +63,8 @@
     "correl": "",
     "expiry": "",
     "broker": "870fab63088deb10",
-    "x": 770,
-    "y": 720,
+    "x": 790,
+    "y": 880,
     "wires": []
   },
   {
@@ -155,7 +156,7 @@
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
-    "initialize": "var deviceName = \"sencorsws12500\"\nvar device = {\n    name: deviceName,\n    ids: \"73722946-9bd0-4fc0-a0c1-ecf6a8036248\",\n    mf: \"Sencor\",\n    mdl: \"SWS12500\",\n    sw: \"1.0\"\n}\nflow.set(\"deviceName\", deviceName)\nflow.set(\"device\", device)\nflow.set(\"id\", \"e4ab4c\")\nflow.set(\"outside_temp_topic\", `homeassistant/sensor/${deviceName}/outside_temp`)\nflow.set(\"inside_temp_topic\", `homeassistant/sensor/${deviceName}/inside_temp`)\nflow.set(\"dew_point_outdoor_topic\", `homeassistant/sensor/${deviceName}/dew_point_outdoor`)\nflow.set(\"humidity_outdoor_topic\", `homeassistant/sensor/${deviceName}/humidity_outdoor`)\nflow.set(\"humidity_indoor_topic\", `homeassistant/sensor/${deviceName}/humidity_indoor`)\nflow.set(\"wind_speed_topic\", `homeassistant/sensor/${deviceName}/wind_speed`)\nflow.set(\"wind_gust_topic\", `homeassistant/sensor/${deviceName}/wind_gust`)\nflow.set(\"wind_direction_topic\", `homeassistant/sensor/${deviceName}/wind_direction`)\nflow.set(\"rain_topic\", `homeassistant/sensor/${deviceName}/rain`)\nflow.set(\"rain_daily_topic\", `homeassistant/sensor/${deviceName}/rain_daily`)\nflow.set(\"baro_pressure_topic\", `homeassistant/sensor/${deviceName}/baro_pressure`)\nflow.set(\"uv_index_topic\", `homeassistant/sensor/${deviceName}/uv_index`)\nflow.set(\"solar_radiation_topic\", `homeassistant/sensor/${deviceName}/solar_radiation`)\n",
+    "initialize": "var deviceName = \"sencorsws12500\"\nvar device = {\n    name: deviceName,\n    ids: \"73722946-9bd0-4fc0-a0c1-ecf6a8036248\",\n    mf: \"Sencor\",\n    mdl: \"SWS12500\",\n    sw: \"1.0\"\n}\nflow.set(\"deviceName\", deviceName)\nflow.set(\"device\", device)\nflow.set(\"id\", \"e4ab4c\")\nflow.set(\"outside_temp_topic\", `homeassistant/sensor/${deviceName}/outside_temp`)\nflow.set(\"inside_temp_topic\", `homeassistant/sensor/${deviceName}/inside_temp`)\nflow.set(\"dew_point_outdoor_topic\", `homeassistant/sensor/${deviceName}/dew_point_outdoor`)\nflow.set(\"humidity_outdoor_topic\", `homeassistant/sensor/${deviceName}/humidity_outdoor`)\nflow.set(\"humidity_indoor_topic\", `homeassistant/sensor/${deviceName}/humidity_indoor`)\nflow.set(\"wind_speed_topic\", `homeassistant/sensor/${deviceName}/wind_speed`)\nflow.set(\"wind_gust_topic\", `homeassistant/sensor/${deviceName}/wind_gust`)\nflow.set(\"wind_direction_topic\", `homeassistant/sensor/${deviceName}/wind_direction`)\nflow.set(\"wind_bearing_topic\", `homeassistant/sensor/${deviceName}/wind_bearing`)\nflow.set(\"rain_topic\", `homeassistant/sensor/${deviceName}/rain`)\nflow.set(\"rain_daily_topic\", `homeassistant/sensor/${deviceName}/rain_daily`)\nflow.set(\"baro_pressure_topic\", `homeassistant/sensor/${deviceName}/baro_pressure`)\nflow.set(\"uv_index_topic\", `homeassistant/sensor/${deviceName}/uv_index`)\nflow.set(\"solar_radiation_topic\", `homeassistant/sensor/${deviceName}/solar_radiation`)\n",
     "finalize": "",
     "libs": [],
     "x": 110,
@@ -186,7 +187,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 120,
-    "y": 1160,
+    "y": 1220,
     "wires": [
       [
         "3f23134e830b9df2",
@@ -201,7 +202,8 @@
         "137e59336fbc393a",
         "efdf9071607073d4",
         "d9594ce775ea6e66",
-        "7476bafd0c2565ae"
+        "7476bafd0c2565ae",
+        "e3a840a1e9931c0b"
       ]
     ]
   },
@@ -218,7 +220,7 @@
     "finalize": "",
     "libs": [],
     "x": 420,
-    "y": 840,
+    "y": 900,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -238,7 +240,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 900,
+    "y": 960,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -258,7 +260,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 960,
+    "y": 1020,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -278,7 +280,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 1020,
+    "y": 1080,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -318,7 +320,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1080,
+    "y": 1140,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -358,7 +360,7 @@
     "finalize": "",
     "libs": [],
     "x": 390,
-    "y": 1140,
+    "y": 1200,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -398,7 +400,7 @@
     "finalize": "",
     "libs": [],
     "x": 390,
-    "y": 1200,
+    "y": 1260,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -438,7 +440,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1260,
+    "y": 1320,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -458,7 +460,7 @@
     "finalize": "",
     "libs": [],
     "x": 370,
-    "y": 540,
+    "y": 600,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -478,7 +480,7 @@
     "finalize": "",
     "libs": [],
     "x": 370,
-    "y": 1320,
+    "y": 1440,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -498,7 +500,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 600,
+    "y": 660,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -518,7 +520,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 1380,
+    "y": 1500,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -538,7 +540,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 660,
+    "y": 720,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -558,7 +560,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1440,
+    "y": 1560,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -578,7 +580,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 720,
+    "y": 780,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -598,7 +600,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 1500,
+    "y": 1620,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -618,7 +620,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 780,
+    "y": 840,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -638,7 +640,47 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1560,
+    "y": 1680,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "e3a840a1e9931c0b",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Wind Bearing",
+    "func": "let name = \"wind_bearing\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"deviceName\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Wind Bearing\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 1380,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "b9b6f30b96b3eee8",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Wind Bearing",
+    "func": "\nlet bearings = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N']\nlet wind = parseFloat(msg.payload.winddir)\nnode.warn(wind)\nlet index = Math.round((wind + 11.25) / 22.5)\nnode.warn(index)\nlet bearing = bearings[index]\nnode.warn(bearing)\nreturn {\n    payload: bearing,\n    topic: flow.get(\"wind_bearing_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 540,
     "wires": [
       [
         "99451acf03ec8a9b"
