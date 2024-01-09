@@ -34,7 +34,9 @@
         "af233031391ef45c",
         "02515c4c20fffce1",
         "15e0e82eb5b8a462",
-        "b9b6f30b96b3eee8"
+        "b9b6f30b96b3eee8",
+        "e9ffb89c4ef3da3f",
+        "853bdb4eb77e6874"
       ]
     ]
   },
@@ -71,7 +73,7 @@
     "id": "f87307b8f55b5344",
     "type": "function",
     "z": "d83f076e92a74e25",
-    "name": "Outside Temperature",
+    "name": "Temperature Outside",
     "func": "var value = ((msg.payload.tempf - 32) / 1.8).toFixed(2)\nreturn { \n    payload: value,\n    topic: flow.get(\"outside_temp_topic\")\n}\n",
     "outputs": 1,
     "timeout": "",
@@ -91,7 +93,7 @@
     "id": "8158728a3ae41188",
     "type": "function",
     "z": "d83f076e92a74e25",
-    "name": "Inside Temperature",
+    "name": "Temperature Inside",
     "func": "var value = ((msg.payload.indoortempf - 32) / 1.8).toFixed(2)\nreturn {\n    payload: value,\n    topic: flow.get(\"inside_temp_topic\")\n}\n",
     "outputs": 1,
     "timeout": "",
@@ -156,7 +158,7 @@
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
-    "initialize": "var deviceName = \"sencorsws12500\"\nvar device = {\n    name: deviceName,\n    ids: \"73722946-9bd0-4fc0-a0c1-ecf6a8036248\",\n    mf: \"Sencor\",\n    mdl: \"SWS12500\",\n    sw: \"1.0\"\n}\nflow.set(\"deviceName\", deviceName)\nflow.set(\"device\", device)\nflow.set(\"id\", \"e4ab4c\")\nflow.set(\"outside_temp_topic\", `homeassistant/sensor/${deviceName}/outside_temp`)\nflow.set(\"inside_temp_topic\", `homeassistant/sensor/${deviceName}/inside_temp`)\nflow.set(\"dew_point_outdoor_topic\", `homeassistant/sensor/${deviceName}/dew_point_outdoor`)\nflow.set(\"humidity_outdoor_topic\", `homeassistant/sensor/${deviceName}/humidity_outdoor`)\nflow.set(\"humidity_indoor_topic\", `homeassistant/sensor/${deviceName}/humidity_indoor`)\nflow.set(\"wind_speed_topic\", `homeassistant/sensor/${deviceName}/wind_speed`)\nflow.set(\"wind_gust_topic\", `homeassistant/sensor/${deviceName}/wind_gust`)\nflow.set(\"wind_direction_topic\", `homeassistant/sensor/${deviceName}/wind_direction`)\nflow.set(\"wind_bearing_topic\", `homeassistant/sensor/${deviceName}/wind_bearing`)\nflow.set(\"rain_topic\", `homeassistant/sensor/${deviceName}/rain`)\nflow.set(\"rain_daily_topic\", `homeassistant/sensor/${deviceName}/rain_daily`)\nflow.set(\"baro_pressure_topic\", `homeassistant/sensor/${deviceName}/baro_pressure`)\nflow.set(\"uv_index_topic\", `homeassistant/sensor/${deviceName}/uv_index`)\nflow.set(\"solar_radiation_topic\", `homeassistant/sensor/${deviceName}/solar_radiation`)\n",
+    "initialize": "var deviceName = \"sencorsws12500\"\nvar device = {\n    name: deviceName,\n    ids: \"73722946-9bd0-4fc0-a0c1-ecf6a8036248\",\n    mf: \"Sencor\",\n    mdl: \"SWS12500\",\n    sw: \"1.0\"\n}\nflow.set(\"deviceName\", deviceName)\nflow.set(\"device\", device)\nflow.set(\"id\", \"e4ab4c\")\nflow.set(\"outside_temp_topic\", `homeassistant/sensor/${deviceName}/outside_temp`)\nflow.set(\"inside_temp_topic\", `homeassistant/sensor/${deviceName}/inside_temp`)\nflow.set(\"dew_point_outdoor_topic\", `homeassistant/sensor/${deviceName}/dew_point_outdoor`)\nflow.set(\"humidity_outdoor_topic\", `homeassistant/sensor/${deviceName}/humidity_outdoor`)\nflow.set(\"humidity_indoor_topic\", `homeassistant/sensor/${deviceName}/humidity_indoor`)\nflow.set(\"wind_speed_topic\", `homeassistant/sensor/${deviceName}/wind_speed`)\nflow.set(\"wind_gust_topic\", `homeassistant/sensor/${deviceName}/wind_gust`)\nflow.set(\"wind_direction_topic\", `homeassistant/sensor/${deviceName}/wind_direction`)\nflow.set(\"wind_bearing_topic\", `homeassistant/sensor/${deviceName}/wind_bearing`)\nflow.set(\"rain_topic\", `homeassistant/sensor/${deviceName}/rain`)\nflow.set(\"rain_daily_topic\", `homeassistant/sensor/${deviceName}/rain_daily`)\nflow.set(\"baro_pressure_topic\", `homeassistant/sensor/${deviceName}/baro_pressure`)\nflow.set(\"uv_index_topic\", `homeassistant/sensor/${deviceName}/uv_index`)\nflow.set(\"solar_radiation_topic\", `homeassistant/sensor/${deviceName}/solar_radiation`)\nflow.set(\"sensor1_temp_topic\", `homeassistant/sensor/${deviceName}/sensor1_temp`)\nflow.set(\"sensor1_humidity_topic\", `homeassistant/sensor/${deviceName}/sensor1_humidity`)\n",
     "finalize": "",
     "libs": [],
     "x": 110,
@@ -187,7 +189,7 @@
     "payload": "",
     "payloadType": "date",
     "x": 120,
-    "y": 1220,
+    "y": 1360,
     "wires": [
       [
         "3f23134e830b9df2",
@@ -203,7 +205,9 @@
         "efdf9071607073d4",
         "d9594ce775ea6e66",
         "7476bafd0c2565ae",
-        "e3a840a1e9931c0b"
+        "e3a840a1e9931c0b",
+        "981b024132cffce2",
+        "5f7b5bbdd668c21c"
       ]
     ]
   },
@@ -220,7 +224,7 @@
     "finalize": "",
     "libs": [],
     "x": 420,
-    "y": 900,
+    "y": 1040,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -240,7 +244,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 960,
+    "y": 1100,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -260,7 +264,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 1020,
+    "y": 1160,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -280,7 +284,7 @@
     "finalize": "",
     "libs": [],
     "x": 410,
-    "y": 1080,
+    "y": 1220,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -320,7 +324,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1140,
+    "y": 1280,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -360,7 +364,7 @@
     "finalize": "",
     "libs": [],
     "x": 390,
-    "y": 1200,
+    "y": 1340,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -400,7 +404,7 @@
     "finalize": "",
     "libs": [],
     "x": 390,
-    "y": 1260,
+    "y": 1400,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -440,7 +444,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1320,
+    "y": 1460,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -480,7 +484,7 @@
     "finalize": "",
     "libs": [],
     "x": 370,
-    "y": 1440,
+    "y": 1580,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -520,7 +524,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 1500,
+    "y": 1640,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -560,7 +564,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1560,
+    "y": 1700,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -600,7 +604,7 @@
     "finalize": "",
     "libs": [],
     "x": 380,
-    "y": 1620,
+    "y": 1760,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -640,7 +644,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1680,
+    "y": 1820,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -660,7 +664,7 @@
     "finalize": "",
     "libs": [],
     "x": 400,
-    "y": 1380,
+    "y": 1520,
     "wires": [
       [
         "99451acf03ec8a9b"
@@ -681,6 +685,86 @@
     "libs": [],
     "x": 400,
     "y": 540,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "e9ffb89c4ef3da3f",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Humidity Sensor 1",
+    "func": "return {\n    payload: msg.payload.soilmoisture,\n    topic: flow.get(\"sensor1_humidity_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 900,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "853bdb4eb77e6874",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Temperature Sensor 1",
+    "func": "var value = ((msg.payload.soiltempf - 32) / 1.8).toFixed(2)\nreturn { \n    payload: value,\n    topic: flow.get(\"sensor1_temp_topic\")\n}\n",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 960,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "981b024132cffce2",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Humidity Sensor 1",
+    "func": "let name = \"sensor1_humidity\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"deviceName\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Humidity Sensor 1\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"humidity\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"%\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 1880,
+    "wires": [
+      [
+        "99451acf03ec8a9b"
+      ]
+    ]
+  },
+  {
+    "id": "5f7b5bbdd668c21c",
+    "type": "function",
+    "z": "d83f076e92a74e25",
+    "name": "Temperature Sensor 1",
+    "func": "let name = \"sensor1_temp\"\nlet topic = flow.get(`${name}_topic`)\nlet device = flow.get(\"deviceName\")\nlet id = flow.get(\"id\")\nreturn {\n    payload: {\n        \"name\": \"Temperature Sensor 1\",\n        \"state_topic\": topic,\n        \"unique_id\": `${device}.${name}`,\n        \"object_id\": `${device}_${id}.${name}`,\n        \"device_class\": \"temperature\",\n        \"state_class\": \"measurement\",\n        \"unit_of_measurement\": \"°C\",\n        \"dev\": flow.get(\"device\")\n    },\n    topic: topic + \"/config\"\n}",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 1940,
     "wires": [
       [
         "99451acf03ec8a9b"
