@@ -672,7 +672,7 @@
     "type": "function",
     "z": "d83f076e92a74e25",
     "name": "Wind Bearing",
-    "func": "\nlet bearings = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N']\nlet wind = parseFloat(msg.payload.winddir)\nnode.warn(wind)\nlet index = Math.round((wind + 11.25) / 22.5)\nnode.warn(index)\nlet bearing = bearings[index]\nnode.warn(bearing)\nreturn {\n    payload: bearing,\n    topic: flow.get(\"wind_bearing_topic\")\n}\n",
+    "func": "\nlet bearings = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N']\nlet wind = parseFloat(msg.payload.winddir)\nlet index = Math.round((wind + 11.25) / 22.5)\nlet bearing = bearings[index]\nreturn {\n    payload: bearing,\n    topic: flow.get(\"wind_bearing_topic\")\n}\n",
     "outputs": 1,
     "timeout": "",
     "noerr": 0,
