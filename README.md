@@ -71,28 +71,10 @@ Now you can start your Proxy Manager. First start will take a while - be patient
 
 ---
 ## **Node-Red flow**  
-To receive data from your station, there need to be flow with `http in` function.  
+To receive data from your station you need to add Node-Red flow
+* Download `NR-flow.json` and import it to Node-Red
 
-> **Method:**  get  
-> **URL:** weatherstation (or whatever you named endpoint in station's URL)
-    
-* Link this function with `http response` with `Status code: 200`  
-* Link `http in` with convert funcion.
-* Link `convert` function with `MQTT out` node  *(download `NR-flow.json` and import flow to NR)*
-
-![MQTTout](/README/NRflow.png?raw=true)
-
-**MQTT Out node**  
-> **Server:** your HA MQTT server  
-> **Topic:** weather (or whatever you want to use for topic in MQTT messages)  
-
-
----
-## **Configure Home Assistant**
-In HA we have to create sensors for recieving data from NR  
-* add `mqtt:` section to `configuration.yaml` of your Home Assistant *(download `mqtt.yaml` from repository)*
-* **restart HA and enjoy collecting data from your weather station :)**  
-  
+The flow implements MQTT discovery so the sensor will show in Home assistant automatically under name: sencorsws12500
       
 ---
 ## **Send meteo data to windy.com**
