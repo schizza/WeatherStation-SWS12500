@@ -1,3 +1,7 @@
+# This repo is obsolete! [Use new custom component instead.](https://github.com/schizza/SWS-12500-custom-component)
+No futher changes is planned in this repository. New custom component is still active. Please switch to custom component.
+You can still use this method if it works for you.
+
 # WeatherStation SWS12500
    *Connecting Sencor SWS 12500 weather station to Home Assistant*
 
